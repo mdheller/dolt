@@ -53,6 +53,7 @@ function run_once() {
     local parsed=temp/parsed"$test_num".json
 
     rm -rf .dolt
+    dolt version
     dolt init
     echo "Running tests and generating $results"
     go run . run ../../../../../../sqllogictest/test > "$results"
@@ -61,6 +62,7 @@ function run_once() {
 }
 
 function run() {
+    dolt version
     seq 1 $TEST_N_TIMES | while read test_num; do
         run_once "$test_num"
     done
